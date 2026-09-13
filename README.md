@@ -225,7 +225,7 @@ order_items
 
 Laravel default tables (`users`, `sessions`, `cache`, `jobs`, `failed_jobs`) remain for framework features. This assignment does not implement authentication.
 
-Money columns use `decimal(12,2)`. Calculations use `brick/math` `BigDecimal` with scale 2 and `HALF_UP` rounding, not floating-point arithmetic.
+Money columns use `decimal(12,2)`. Calculations use `brick/math` `BigDecimal` with scale 2 and `RoundingMode::HalfUp` rounding, not floating-point arithmetic.
 
 Tax is calculated per line, then summed:
 
