@@ -106,6 +106,12 @@ php artisan serve
 - Demonstration UI: `http://localhost:8000/`
 - Health: `http://localhost:8000/up`
 
+## Demo / Recording
+
+A short demonstration of the application and workflow is available here:
+
+- Loom: [Retail Counter API demo](https://www.loom.com/share/99961c212ef84c71a6e49e69e4d43e4a)
+
 ## API endpoints
 
 All JSON APIs are under `/api`.
@@ -159,6 +165,18 @@ Successful response: `201 Created`
         "tax_amount": "89.64",
         "line_subtotal": "498.00",
         "line_total": "587.64"
+      },
+      {
+        "id": 2,
+        "product_id": 2,
+        "product_name": "Blue Ballpoint Pen",
+        "product_code": "STN-PEN-002",
+        "quantity": 4,
+        "unit_price": "12.50",
+        "tax_percentage": "18.00",
+        "tax_amount": "9.00",
+        "line_subtotal": "50.00",
+        "line_total": "59.00"
       }
     ],
     "created_at": "2026-09-12T08:00:00.000000Z"
@@ -248,7 +266,7 @@ Order creation runs in a single database transaction.
 
 If two requests try to buy the last unit at the same time, one transaction should succeed and the other should fail with `insufficient_stock`. Stock must not go negative.
 
-SQLite (used by default in tests and local setup) serializes writers. `SELECT ... FOR UPDATE` is fully meaningful on MySQL/PostgreSQL. A true parallel HTTP race test is not included because PHPUnit + in-memory SQLite cannot reliably reproduce two concurrent writers. The production code path is still lock + atomic decrement.
+SQLite (used by default in tests and local setup) serializes writers. `SELECT ... FOR UPDATE` is fully meaningful on MySQL/PostgreSQL. A dedicated parallel race test was not run because the PHPUnit in-memory SQLite setup cannot reliably reproduce concurrent writers. The production code path is still lock + atomic decrement.
 
 ## Architecture
 
@@ -278,7 +296,7 @@ SQLite (used by default in tests and local setup) serializes writers. `SELECT ..
 
 ## AI-assisted development
 
-AI-assisted development is permitted by the assignment. Cursor was used to inspect the repository, implement the APIs, tests, and this README. Prompt screenshots can be provided separately if the reviewer requests them.
+AI was used during development and review of this assignment. The actual prompt screenshots are included in the repository under `prompts/`.
 
 ## Project layout (assignment code)
 
