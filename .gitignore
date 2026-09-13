@@ -30,4 +30,5 @@ Thumbs.db
 /AGENTS.md
 /CLAUDE.md
 /INTERVIEW.md
-/prompts/
+# Keep prompt screenshots tracked for the assignment review
+#!/prompts/
